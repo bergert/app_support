@@ -1,0 +1,9 @@
+
+
+1) Install MySQL
+
+2) create the video database
+-steps here-
+
+3) load the video data
+-steps here-
