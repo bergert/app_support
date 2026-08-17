@@ -1,24 +1,172 @@
 
 <p><img src="./serialconsole_icon_128x128.png"></p>
 
-<h1 id="markdown-header-welcome">Welcome</h1>
+<b id="markdown-header-welcome">Welcome</b>
 
-<p>This is the SerialConsole support page.
-Please do report any issues or suggestions under Issues</p>
+<p>This is the SerialConsole app (iPad and macOS) support page.</p>
 
-<p>To download, go to the <a data-is-external-link="true" target="_blank" href="https://apps.apple.com/app/id_not_assigned"  rel="nofollow">macOS App store</a></p>
 
-<p>This app is serial console (terminal) for the FTDI type serial adapters. It supports macOS and iPad (M-series only). To use or test, you need an FTDI hardware adapter plugged into your USB port.</p>
+<h2 id="markdown-header-help">Index</h2>
+
+<nav id="index">
+  <ol>
+    <li><a href="#support">Support</a></li>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#ansi-vt100">ANSI/vt100</a></li>
+    <li><a href="#message">Message</a></li>
+    <li><a href="#2-wire">2-wire</a></li>
+  </ol>
+</nav>
 
 <p><br>
-
-Here is the SerialConsole <a data-is-external-link="true" target="_top" href="./serialconsole_privacypolicy.htm" rel="nofollow">privacy policy</a>
-
 <p><br>
 
-<p>I have created this App in my spare time, and I'm giving it away for free. 
-I will do my best to respond to issues as my time allows.</p>
+<section id="support">
+<h2>Support</h2>
+<div style="padding-left: 20px;">
 
+   <p>This app is serial console (terminal) for the FTDI type serial adapters.
+   It supports macOS and iPad (M-series only).
+   <br>
+   To use or test, you need an FTDI hardware adapter plugged into your USB port.
+   </p>
+   
+   <p>To download, go to the <a data-is-external-link="true" 
+   target="_blank" href="https://apps.apple.com/us/app/terminal-console/id6753069550" rel="nofollow">App Store</a>
+   </p>
+
+   <p>The sections below provide more details of the app and the USB driver included with the app.
+   </p>
+
+   <p>
+   Here is the SerialConsole <a data-is-external-link="true" 
+   target="_top" href="./serialconsole_privacypolicy.htm" rel="nofollow">privacy policy</a>: no data collected.
+   </p>
+
+   <p>I have created this App in my spare time, and I'm giving it away for free. 
+   I will do my best to respond to issues as my time allows.
+   <br>
+   Please do report any issues or suggestions under  <a data-is-external-link="true" 
+   target="_blank" href="https://github.com/bergert/app_support/issues" rel="nofollow">Issues</a>
+   </p>
+
+</div>
+</section>
+<p><br>
+
+<section id="description">
+<h2>Description</h2>
+<div style="padding-left: 20px;">
+
+   <p>I wrote this app, because I wanted to debug a device's serial protocol. The device is sending hex data.<br>
+   And, rolling my own USB driver (included with the app) to support iPads with USB-C interface.
+   <br>
+   The app and driver support macOS 15+ and iPadOS 18+.
+   </p>
+
+   <p>The app only talks to the included USB driver.
+   </p>
+
+   <p>The USB driver supports FTDI serial adapters which come in many different shapes. If you have an USB-A adapter, 
+   you can plug it into your iPad using a USB-C to A converter.
+   <br>
+   The FTDI adapter has vendor ID 0x0403, and product ID 0x6001. You can verify the IDs in the Mac's System Report (under Apple menu).
+   </p>
+
+   <p><b>macOS:</b> launching the app will request the driver to be installed as system extension (DriverKit).
+   The app must be located in the Applications folder.
+   <br>
+   <b>iPad:</b> DriverKit extension install is automatic.
+   </p>
+
+   <p><b>iPad and macOS:</b> Once the DriverKit driver is installed, the driver must be approved by the user 
+   in System Preferences->Privacy and Security. 
+   </p>
+
+   <p><b>macOS:</b> Once the driver is authorized (installed), it will take control of any FTDI adapter plugged, 
+   replacing the built-in FTDI driver. The macOS FTDI driver is legacy, not supported on iPad.
+   To use the built-in Apple-FTDI driver you must un-install the SerialConsole driver by moving the app to the Trash. 
+   Of course, the USB has to be un-plugged for the un-install to work.
+   <p>
+</div>
+</section>
+<p><br>
+
+<section id="ansi-vt100">
+<h2>Mode: ANSI/vt100</h2>
+<div style="padding-left: 20px;">
+
+   <p>A vt100 terminal is a display, typically with a 80 chars per line, 24 lines matrix presented on the screen.
+   <br>
+   The connected device (host computer) uses vt100 ESC sequences for control the display: moving the cursor, or setting color.
+   The app does support all that.
+   </p>
+
+   <p>On a vt100 display, scrolling means moving all lines one line up - deleting whatever was in the top line.
+   <br>Saving the screen, means saving the 80x24 character matrix.
+   </p>
+
+   <p>The app's on-screen keyboard includes a [Fn] key, which allows you to send function keys F1 to F12 sequences.
+   <br>
+   While you can use your Mac or iPad physical keyboard to enter data, it is not possible to use all function keys for the app. Therefore the F-keys are only supported with the on-screen keybord.
+   </p>
+
+</div>
+</section>
+<p><br>
+
+<section id="message">
+<h2>Mode: Message</h2>
+<div style="padding-left: 20px;">
+
+   <p>With message mode the app will show messages being received.
+   <br>A new line is started, when the last message ends with CR or LF.
+   <br>In this mode, you can scroll (and save) all messages to a file.
+   </p>
+
+   <p>The button on the top, lets you change the display from UTF to hex (0x00). 
+   </p>
+
+   <p>Connecting to a device like a firewall is not really useful, as the vt100 ESC sequences will show (non-printable ASCII, in hex) in the message log.  
+   </p>
+
+
+</div>
+</section>
+<p><br>
+
+<section id="2-wire">
+<h2>Mode: 2-wire</h2>
+<div style="padding-left: 20px;">
+
+   <p>A 2-wire open collector bus (like a CAN bus) is found in many devices and appliances.
+   <br>It implies that there is one wire for ground, and one wire to send and receive data.
+   <br>To connect to a 2-wire bus you need an additional adapter to convert the FTDI serial interface (send and receive wires) into a single wire. 
+   This kind of adapter will also provide electrical 
+<a data-is-external-link="true" 
+   target="_blank" href="https://github.com/hn/bsh-home-appliances" rel="nofollow">isolation</a>
+   - to isolate your iPad or Mac from the device.
+   </p>
+
+   <p>When you activate 2-wire mode, the app will switch the driver: The driver sets the FTDI for minimum receive interval to perform collision detection. Any data sent by the app is kept in the driver buffer and only sent out on the wire if the bus was idle for 5ms.
+   </p>
+
+   <p><u>Send datagram:</u> allows you enter a datagram, and the app will automatically calculate the required CRC checksum.
+   </p>
+
+   <p><u>Download:</u> will request a download from the device and save it to a file. Download is complicated by 2-wire bus collisions: the app will wait for each download packet with a timeout of 4 seconds. The message log shows, that up to 2 seconds will pass until the download request is sent (collision detection).The message log will also show retries. One or two retries because of collision are normal. The app will retry up 10 times before giving up.
+   <br>
+   Because during download messages appear rapidly, and there are not just download request and reply - but there is also other data on the shared bus at the same time. 
+   Therefore, during download message scrolling/refresh happens every 3% of data arrived, or when a packet request times out.
+   <br>
+   As download can take more than 30 minutes, new messages are dropped when a download completes. This way, the download log stays relevant (save for analysis). 
+   To start a new session, restart the app.
+   </p>
+
+
+</div>
+</section>
+<p><br>
 
 
 
